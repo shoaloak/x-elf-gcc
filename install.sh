@@ -53,12 +53,12 @@ function main() {
 	echo "Selected versions:"
 	echo $BINUTILS_URL
 	echo $GCC_URL
-	printf "%0.s-" {1..80}
+	printf "%0.s-" {1..80} && echo ""
 	echo "This will install $TARGET cross compiler in $PREFIX"
 	read -p "Press [Enter] to continue..."
 
 	install_binutils
-	printf "%0.s-" {1..80}
+	printf "%0.s-" {1..80} && echo ""
 	install_gcc
 	echo Done!
 	echo "Don't forget to add $PREFIX/bin to your path."
