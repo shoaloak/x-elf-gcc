@@ -9,7 +9,7 @@ readonly BIN_DIR="$PWD/binutils"
 readonly GCC_DIR="$PWD/gcc"
 
 export TARGET=i686-elf
-export PREFIX="$HOME/bin"
+export PREFIX="$HOME/opt/cross"
 export PATH="$PREFIX/bin:$PATH"
 mkdir $PREFIX
 
@@ -24,7 +24,7 @@ function install_binutils() {
 	SRC=$(echo */)
 	mkdir build
 	cd build
-	../"$SRC"configure --target=$TARGET --prefix="$PREFIX" --with-sysroot --disable-nls --disable-werror
+	../"$SRC"configure --target="$TARGET" --prefix="$PREFIX" --with-sysroot --disable-nls --disable-werror
 	make -j$(nproc)
 	make install
 }
@@ -41,7 +41,7 @@ function install_gcc() {
 	SRC=$(echo */)
 	mkdir build
 	cd build
-	../"$SRC"configure --target=$TARGET --prefix="$PREFIX" --disable-nls --enable-languages=c,c++ --without-headers
+	../"$SRC"configure --target="$TARGET" --prefix="$PREFIX" --disable-nls --enable-languages=c,c++ --without-headers
 
 	make -j$(nproc) all-gcc
 	make -j$(nproc) all-target-libgcc
@@ -61,7 +61,7 @@ function main() {
 	printf "%0.s-" {1..80}
 	install_gcc
 	echo Done!
-	echo "Don't forget to add $PREFIX to your path."
+	echo "Don't forget to add $PREFIX/bin to your path."
 }
 
 main "$@"
