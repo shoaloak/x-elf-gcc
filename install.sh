@@ -11,7 +11,7 @@ readonly GCC_DIR="$PWD/gcc"
 export TARGET=i686-elf
 export PREFIX="$HOME/opt/cross"
 export PATH="$PREFIX/bin:$PATH"
-mkdir $PREFIX
+mkdir -p $PREFIX
 
 function install_binutils() {
 	echo -e "\nInstalling Binutils..."
@@ -55,7 +55,7 @@ function main() {
 	echo $GCC_URL
 	printf "%0.s-" {1..80}
 	echo "This will install $TARGET cross compiler in $PREFIX"
-	readonly -p "Press [Enter] to continue..."
+	read -p "Press [Enter] to continue..."
 
 	install_binutils
 	printf "%0.s-" {1..80}
